@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Field Notes</title>
-  <link rel="stylesheet" href="style.css">
+  <title>a sculptor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #f5f1e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      width: 600px;
+      height: 500px;
+      background: white;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      padding: 40px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: opacity 0.4s ease;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .text {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .hint {
+      font-size: 12px;
+      text-align: right;
+      opacity: 0.5;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="page">
-    <h1>FIELD NOTES</h1>
-    <p>A quiet study of hands and gestures.</p>
-    <a class="next" href="page1.html">→</a>
+
+<div class="page active" onclick="nextPage()">
+  <div class="text">
+    This is where the archive begins.  
+    A fragment of thought.
   </div>
+  <img src="image1.jpg">
+  <div class="hint">click to turn</div>
+</div>
+
+<div class="page" onclick="nextPage()">
+  <div class="text">
+    The dog was not a dog.  
+    It was weight, memory, metal.
+  </div>
+  <img src="image2.jpg">
+  <div class="hint">click to turn</div>
+</div>
+
+<script>
+let current = 0;
+const pages = document.querySelectorAll(".page");
+
+function nextPage() {
+  pages[current].classList.remove("active");
+  current = (current + 1) % pages.length;
+  pages[current].classList.add("active");
+}
+</script>
+
 </body>
 </html>
